@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AudioPool.WebApi.Models.DTOs
+namespace AudioPool.WebApi.Models.Dtos
 {
     public class GenreDto
     {

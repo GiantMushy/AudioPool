@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using AudioPool.WebApi.Models.Dtos;
 
 namespace AudioPool.WebApi.Controllers;
 
@@ -67,18 +68,18 @@ public class AudioPoolController : ControllerBase
     // -------------------------------------
     // --------- Authorized access ---------
     // -------------------------------------
-    
+
     [HttpPost("genres")]
-    public ActionResult CreateNewGenre()
+    public ActionResult CreateNewGenre([FromBody] GenreDto input)
     {
-        return Created();
+        return Ok(input);
     }
 
     //Create Artist
     [HttpPost("artists")]
-    public ActionResult CreateNewArtist()
+    public ActionResult CreateNewArtist([FromBody] ArtistDto input)
     {
-        return Created();
+        return Ok(input);
     }
 
     //Update Artist
@@ -111,9 +112,9 @@ public class AudioPoolController : ControllerBase
 
     //Create Song
     [HttpPost("albums/{id:int}/songs")]
-    public ActionResult CreateNewSong(int id)
+    public ActionResult CreateNewSong([FromBody] SongDto input)
     {
-        return Created();
+        return Ok(input);
     }
 
     //Delete Song

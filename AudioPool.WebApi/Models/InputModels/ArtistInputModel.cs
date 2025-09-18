@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AudioPool.WebApi.Models.ViewModels
+namespace AudioPool.WebApi.Models.InputModels
 {
-    public class Genre
+    public class ArtistInputModel
     {
         
     }
