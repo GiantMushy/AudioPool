@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "SXzvtZ8XKtGTbpWDmu3lO8F4y9Vm/zGlz0E87C/wiwM=",
+  "Source": "AudioPool.WebApi",
+  "BasePath": "_content/AudioPool.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
