@@ -1,0 +1,12 @@
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/bin/Debug/net8.0/AudioPool.Models.deps.json
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/bin/Debug/net8.0/AudioPool.Models.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/bin/Debug/net8.0/AudioPool.Models.pdb
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.AssemblyInfoInputs.cache
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.AssemblyInfo.cs
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.csproj.CoreCompileInputs.cache
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.sourcelink.json
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/refint/AudioPool.Models.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/AudioPool.Models.pdb
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/obj/Debug/net8.0/ref/AudioPool.Models.dll

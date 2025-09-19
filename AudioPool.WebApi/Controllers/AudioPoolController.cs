@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using AudioPool.WebApi.Models.Dtos;
+using AudioPool.Models.Dtos;
 
 namespace AudioPool.WebApi.Controllers;
 
@@ -7,7 +7,9 @@ namespace AudioPool.WebApi.Controllers;
 [Route("[controller]")]
 public class AudioPoolController : ControllerBase
 {
-    // --------- Unauthorized access ---------
+    // -------------------------------------
+    // -------- Unauthorized access --------
+    // -------------------------------------
 
     // http://localhost:5000/audiopool/genres
     [HttpGet("genres", Name = "GetAllGenres")]
@@ -72,7 +74,7 @@ public class AudioPoolController : ControllerBase
     [HttpPost("genres", Name = "CreateGenre")]
     public ActionResult CreateGenre([FromBody] GenreDto input)
     {
-        return Ok(input);
+        return CreatedAtAction("GetGenreById", new { id = 1 }, input);
     }
 
     //Create Artist

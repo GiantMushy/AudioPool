@@ -31,3 +31,9 @@
 /Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/obj/Debug/net8.0/AudioPool.WebApi.pdb
 /Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/obj/Debug/net8.0/AudioPool.WebApi.genruntimeconfig.cache
 /Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/obj/Debug/net8.0/ref/AudioPool.WebApi.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/bin/Debug/net8.0/AudioPool.Models.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/bin/Debug/net8.0/AudioPool.Repositories.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/bin/Debug/net8.0/AudioPool.Services.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/bin/Debug/net8.0/AudioPool.Models.pdb
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/bin/Debug/net8.0/AudioPool.Services.pdb
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/bin/Debug/net8.0/AudioPool.Repositories.pdb
