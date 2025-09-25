@@ -30,7 +30,7 @@ namespace AudioPool.WebApi.Controllers
         [HttpGet("{id:int}", Name = "GetArtistById")]
         public IActionResult GetArtistById(int id)
         {
-            return Ok(id);
+            return Ok(_artistService.GetArtistById(id));
         }
 
         // http://localhost:5000/audiopool/artists/1/albums
