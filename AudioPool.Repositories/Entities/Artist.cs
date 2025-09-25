@@ -29,7 +29,7 @@ namespace AudioPool.Repositories.Entities
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public string? ModifiedBy { get; set; }
-        public ICollection<ArtistGenre> GenreLink { get; set; } = [];
-        public ICollection<AlbumArtist> AlbumLink { get; set; } = [];
+        public ICollection<Genre> Genres { get; set; } = [];
+        public ICollection<Album> Albums { get; set; } = [];
     }
 }

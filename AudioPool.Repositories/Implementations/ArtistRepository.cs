@@ -31,8 +31,8 @@ namespace AudioPool.Repositories.Implementations
         public ArtistDetailsDto GetArtistById(int id)
         {
             var artist = _audioDbContext.Artists
-                .Include(a => a.AlbumLink)
-                .ThenInclude(al => al.Album)
+                .Include(a => a.Albums)
+                .Include(a => a.Genres)
                 .Where(a => a.Id == id)
                 .Select(a => new ArtistDetailsDto
                 {
@@ -41,13 +41,18 @@ namespace AudioPool.Repositories.Implementations
                     Bio = a.Bio ?? "",
                     CoverImageUrl = a.CoverImageUrl ?? "",
                     DateOfStart = a.DateOfStart,
-                    Albums = a.AlbumLink.Select(al => new AlbumDto
+                    Albums = a.Albums.Select(al => new AlbumDto
                     {
-                        Id = al.Album.Id,
-                        Name = al.Album.Name,
-                        ReleaseDate = al.Album.ReleaseDate,
-                        CoverImageUrl = al.Album.CoverImageUrl,
-                        Description = al.Album.Description
+                        Id = al.Id,
+                        Name = al.Name,
+                        ReleaseDate = al.ReleaseDate,
+                        CoverImageUrl = al.CoverImageUrl,
+                        Description = al.Description
+                    }),
+                    Genres = a.Genres.Select(g => new GenreDto
+                    {
+                        Id = g.Id,
+                        Name = g.Name
                     })
                 }).FirstOrDefault();
 

@@ -19,5 +19,5 @@ public class Genre
     public DateTime DateCreated { get; set; }
     public DateTime? DateModified { get; set; }
     public string? ModifiedBy { get; set; }
-    public ICollection<ArtistGenre> ArtistLink { get; set; } = [];
+    public ICollection<Artist> Artists { get; set; } = [];
 }

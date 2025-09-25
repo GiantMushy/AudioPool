@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AudioPool.WebApi.Migrations
 {
     [DbContext(typeof(AudioDbContext))]
-    [Migration("20250925204217_Initial")]
+    [Migration("20250925223534_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -19,6 +19,36 @@ namespace AudioPool.WebApi.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
+
+            modelBuilder.Entity("AlbumArtist", b =>
+                {
+                    b.Property<int>("AlbumsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ArtistsId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AlbumsId", "ArtistsId");
+
+                    b.HasIndex("ArtistsId");
+
+                    b.ToTable("AlbumArtist");
+                });
+
+            modelBuilder.Entity("ArtistGenre", b =>
+                {
+                    b.Property<int>("ArtistsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GenresId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ArtistsId", "GenresId");
+
+                    b.HasIndex("GenresId");
+
+                    b.ToTable("ArtistGenre");
+                });
 
             modelBuilder.Entity("AudioPool.Repositories.Entities.Album", b =>
                 {
@@ -53,29 +83,6 @@ namespace AudioPool.WebApi.Migrations
                     b.ToTable("Albums");
                 });
 
-            modelBuilder.Entity("AudioPool.Repositories.Entities.AlbumArtist", b =>
-                {
-                    b.Property<int>("AlbumsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ArtistsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AlbumId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ArtistId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("AlbumsId", "ArtistsId");
-
-                    b.HasIndex("AlbumId");
-
-                    b.HasIndex("ArtistId");
-
-                    b.ToTable("AlbumArtist");
-                });
-
             modelBuilder.Entity("AudioPool.Repositories.Entities.Artist", b =>
                 {
                     b.Property<int>("Id")
@@ -107,29 +114,6 @@ namespace AudioPool.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Artists");
-                });
-
-            modelBuilder.Entity("AudioPool.Repositories.Entities.ArtistGenre", b =>
-                {
-                    b.Property<int>("ArtistsId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("GenresId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ArtistId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("GenreId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ArtistsId", "GenresId");
-
-                    b.HasIndex("ArtistId");
-
-                    b.HasIndex("GenreId");
-
-                    b.ToTable("ArtistGenre");
                 });
 
             modelBuilder.Entity("AudioPool.Repositories.Entities.Genre", b =>
@@ -186,51 +170,34 @@ namespace AudioPool.WebApi.Migrations
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("AudioPool.Repositories.Entities.AlbumArtist", b =>
+            modelBuilder.Entity("AlbumArtist", b =>
                 {
-                    b.HasOne("AudioPool.Repositories.Entities.Album", "Album")
-                        .WithMany("ArtistLink")
-                        .HasForeignKey("AlbumId");
+                    b.HasOne("AudioPool.Repositories.Entities.Album", null)
+                        .WithMany()
+                        .HasForeignKey("AlbumsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("AudioPool.Repositories.Entities.Artist", "Artist")
-                        .WithMany("AlbumLink")
-                        .HasForeignKey("ArtistId");
-
-                    b.Navigation("Album");
-
-                    b.Navigation("Artist");
+                    b.HasOne("AudioPool.Repositories.Entities.Artist", null)
+                        .WithMany()
+                        .HasForeignKey("ArtistsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("AudioPool.Repositories.Entities.ArtistGenre", b =>
+            modelBuilder.Entity("ArtistGenre", b =>
                 {
-                    b.HasOne("AudioPool.Repositories.Entities.Artist", "Artist")
-                        .WithMany("GenreLink")
-                        .HasForeignKey("ArtistId");
+                    b.HasOne("AudioPool.Repositories.Entities.Artist", null)
+                        .WithMany()
+                        .HasForeignKey("ArtistsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("AudioPool.Repositories.Entities.Genre", "Genre")
-                        .WithMany("ArtistLink")
-                        .HasForeignKey("GenreId");
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("Genre");
-                });
-
-            modelBuilder.Entity("AudioPool.Repositories.Entities.Album", b =>
-                {
-                    b.Navigation("ArtistLink");
-                });
-
-            modelBuilder.Entity("AudioPool.Repositories.Entities.Artist", b =>
-                {
-                    b.Navigation("AlbumLink");
-
-                    b.Navigation("GenreLink");
-                });
-
-            modelBuilder.Entity("AudioPool.Repositories.Entities.Genre", b =>
-                {
-                    b.Navigation("ArtistLink");
+                    b.HasOne("AudioPool.Repositories.Entities.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

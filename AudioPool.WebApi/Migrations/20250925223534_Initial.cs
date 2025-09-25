@@ -88,23 +88,23 @@ namespace AudioPool.WebApi.Migrations
                 columns: table => new
                 {
                     AlbumsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ArtistsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AlbumId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ArtistId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ArtistsId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AlbumArtist", x => new { x.AlbumsId, x.ArtistsId });
                     table.ForeignKey(
-                        name: "FK_AlbumArtist_Albums_AlbumId",
-                        column: x => x.AlbumId,
+                        name: "FK_AlbumArtist_Albums_AlbumsId",
+                        column: x => x.AlbumsId,
                         principalTable: "Albums",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AlbumArtist_Artists_ArtistId",
-                        column: x => x.ArtistId,
+                        name: "FK_AlbumArtist_Artists_ArtistsId",
+                        column: x => x.ArtistsId,
                         principalTable: "Artists",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -112,44 +112,34 @@ namespace AudioPool.WebApi.Migrations
                 columns: table => new
                 {
                     ArtistsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    GenresId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ArtistId = table.Column<int>(type: "INTEGER", nullable: true),
-                    GenreId = table.Column<int>(type: "INTEGER", nullable: true)
+                    GenresId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ArtistGenre", x => new { x.ArtistsId, x.GenresId });
                     table.ForeignKey(
-                        name: "FK_ArtistGenre_Artists_ArtistId",
-                        column: x => x.ArtistId,
+                        name: "FK_ArtistGenre_Artists_ArtistsId",
+                        column: x => x.ArtistsId,
                         principalTable: "Artists",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArtistGenre_Genres_GenreId",
-                        column: x => x.GenreId,
+                        name: "FK_ArtistGenre_Genres_GenresId",
+                        column: x => x.GenresId,
                         principalTable: "Genres",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AlbumArtist_AlbumId",
+                name: "IX_AlbumArtist_ArtistsId",
                 table: "AlbumArtist",
-                column: "AlbumId");
+                column: "ArtistsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AlbumArtist_ArtistId",
-                table: "AlbumArtist",
-                column: "ArtistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtistGenre_ArtistId",
+                name: "IX_ArtistGenre_GenresId",
                 table: "ArtistGenre",
-                column: "ArtistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtistGenre_GenreId",
-                table: "ArtistGenre",
-                column: "GenreId");
+                column: "GenresId");
         }
 
         /// <inheritdoc />

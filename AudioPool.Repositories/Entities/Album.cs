@@ -26,5 +26,5 @@ public class Album
     public string? ModifiedBy { get; set; }
 
     // Navigation properties
-    public ICollection<AlbumArtist> ArtistLink { get; set; } = [];
+    public ICollection<Artist> Artists { get; set; } = [];
 }
