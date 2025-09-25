@@ -14,3 +14,5 @@
 /Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Repositories/obj/Debug/net8.0/refint/AudioPool.Repositories.dll
 /Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Repositories/obj/Debug/net8.0/AudioPool.Repositories.pdb
 /Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Repositories/obj/Debug/net8.0/ref/AudioPool.Repositories.dll
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Repositories/bin/Debug/net8.0/AudioPool.Repositories.runtimeconfig.json
+/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Repositories/obj/Debug/net8.0/AudioPool.Repositories.genruntimeconfig.cache

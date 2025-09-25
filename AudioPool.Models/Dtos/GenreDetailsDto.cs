@@ -8,7 +8,7 @@ namespace AudioPool.Models.Dtos
     public class GenreDetailsDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public int NumberOfArtists { get; set; }
     }
 }

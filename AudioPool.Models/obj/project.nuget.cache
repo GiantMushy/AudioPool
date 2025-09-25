@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "z9E/v+RTyFA=",
+  "dgSpecHash": "rJLrKjnANGI=",
   "success": true,
   "projectFilePath": "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/AudioPool.Models.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/totomcfrodo/.nuget/packages/microsoft.netcore.app.ref/8.0.20/microsoft.netcore.app.ref.8.0.20.nupkg.sha512",
+    "/Users/totomcfrodo/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.20/microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512"
+  ],
   "logs": []
 }

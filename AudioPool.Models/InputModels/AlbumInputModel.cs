@@ -7,14 +7,10 @@ namespace AudioPool.Models.InputModels
 {
     public class AlbumInputModel
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         public DateTime ReleaseDate { get; set; }
+        public ICollection<int> ArtistIds { get; set; } = [];
         public string? CoverImageUrl { get; set; }
         public string? Description { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime? DateModified { get; set; }
-        public string? ModifiedBy { get; set; }
-        public ICollection<ArtistInputModel> Artists { get; set; }
-        public ICollection<SongInputModel> Songs { get; set; }
     }
 }

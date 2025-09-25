@@ -28,7 +28,7 @@ namespace AudioPool.Models.Entities
         /// <summary>
         /// Name of the song.
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
         /// <summary>
         /// Duration of the song.
         /// </summary>
@@ -48,6 +48,6 @@ namespace AudioPool.Models.Entities
         /// <summary>
         /// The album to which the song belongs.
         /// </summary>
-        public Album Album { get; set; }
+        public int AlbumId { get; set; }
     }
 }

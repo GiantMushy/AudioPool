@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AudioPool.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a5fff942ffe5ffffd4df76f51b67c1374ad51be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69eb3f6c9972a22ff21f1f440ce115721fa9903f")]
 [assembly: System.Reflection.AssemblyProductAttribute("AudioPool.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AudioPool.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
