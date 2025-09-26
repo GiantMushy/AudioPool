@@ -112,7 +112,23 @@ namespace AudioPool.Repositories.Implementations
 
         public void LinkArtistToGenre(int artistId, int genreId)
         {
-            throw new NotImplementedException();
+            // Fetch the artist and genre entities, then add the genre to the artist's collection and add the artist to the genre's collection
+            var artist = _audioDbContext.Artists
+                .Include(a => a.Genres)
+                .FirstOrDefault(a => a.Id == artistId);
+            var genre = _audioDbContext.Genres
+                .Include(g => g.Artists)
+                .FirstOrDefault(g => g.Id == genreId);
+
+            if (artist == null || genre == null) { return; }
+
+            if (!artist.Genres.Contains(genre) && !genre.Artists.Contains(artist))
+            {
+                artist.Genres.Add(genre);
+                genre.Artists.Add(artist);
+            }
+
+            _audioDbContext.SaveChanges();
         }
 
     }
