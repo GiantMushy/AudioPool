@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AudioPool.Models.Dtos;
 using AudioPool.Models.InputModels;
 using AudioPool.Repositories.Contexts;
+using AudioPool.Repositories.Entities;
 using AudioPool.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -65,12 +66,33 @@ namespace AudioPool.Repositories.Implementations
 
         public IEnumerable<AlbumDto> GetAlbumsByArtistId(int artistId)
         {
-            throw new NotImplementedException();
+            return _audioDbContext.Albums
+                .Where(al => al.Artists.Any(a => a.Id == artistId))
+                .Select(al => new AlbumDto
+                {
+                    Id = al.Id,
+                    Name = al.Name,
+                    ReleaseDate = al.ReleaseDate,
+                    CoverImageUrl = al.CoverImageUrl,
+                    Description = al.Description
+                }).ToList();
         }
 
         public int CreateArtist(ArtistInputModel artist)
         {
-            throw new NotImplementedException();
+            var entity = new Artist
+            {
+                Name = artist.Name,
+                Bio = artist.Bio,
+                CoverImageUrl = artist.CoverImageUrl,
+                DateOfStart = artist.DateOfStart,
+                DateCreated = DateTime.UtcNow
+            };
+
+            _audioDbContext.Artists.Add(entity);
+            _audioDbContext.SaveChanges();
+
+            return entity.Id;
         }
 
         public void UpdateArtist(int id, ArtistInputModel artist)
