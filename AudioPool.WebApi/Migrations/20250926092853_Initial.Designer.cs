@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AudioPool.WebApi.Migrations
 {
     [DbContext(typeof(AudioDbContext))]
-    [Migration("20250925223534_Initial")]
+    [Migration("20250926092853_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -167,6 +167,8 @@ namespace AudioPool.WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AlbumId");
+
                     b.ToTable("Songs");
                 });
 
@@ -198,6 +200,20 @@ namespace AudioPool.WebApi.Migrations
                         .HasForeignKey("GenresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AudioPool.Repositories.Entities.Song", b =>
+                {
+                    b.HasOne("AudioPool.Repositories.Entities.Album", null)
+                        .WithMany("Songs")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AudioPool.Repositories.Entities.Album", b =>
+                {
+                    b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618
         }

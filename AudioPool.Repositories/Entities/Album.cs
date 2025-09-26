@@ -27,4 +27,5 @@ public class Album
 
     // Navigation properties
     public ICollection<Artist> Artists { get; set; } = [];
+    public ICollection<Song> Songs { get; set; } = [];
 }

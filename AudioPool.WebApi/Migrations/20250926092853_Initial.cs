@@ -81,6 +81,12 @@ namespace AudioPool.WebApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Songs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Songs_Albums_AlbumId",
+                        column: x => x.AlbumId,
+                        principalTable: "Albums",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,6 +146,11 @@ namespace AudioPool.WebApi.Migrations
                 name: "IX_ArtistGenre_GenresId",
                 table: "ArtistGenre",
                 column: "GenresId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Songs_AlbumId",
+                table: "Songs",
+                column: "AlbumId");
         }
 
         /// <inheritdoc />
@@ -155,13 +166,13 @@ namespace AudioPool.WebApi.Migrations
                 name: "Songs");
 
             migrationBuilder.DropTable(
-                name: "Albums");
-
-            migrationBuilder.DropTable(
                 name: "Artists");
 
             migrationBuilder.DropTable(
                 name: "Genres");
+
+            migrationBuilder.DropTable(
+                name: "Albums");
         }
     }
 }
