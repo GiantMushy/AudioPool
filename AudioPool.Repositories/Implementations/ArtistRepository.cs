@@ -97,7 +97,17 @@ namespace AudioPool.Repositories.Implementations
 
         public void UpdateArtist(int id, ArtistInputModel artist)
         {
-            throw new NotImplementedException();
+            var entity = _audioDbContext.Artists.FirstOrDefault(a => a.Id == id);
+            if (entity == null) { return; }
+
+            entity.Name = artist.Name;
+            entity.Bio = artist.Bio;
+            entity.CoverImageUrl = artist.CoverImageUrl;
+            entity.DateOfStart = artist.DateOfStart;
+            entity.DateModified = DateTime.UtcNow;
+            entity.ModifiedBy = "AudioPoolAdmin"; // Skv. verkefna skilgreiningu
+
+            _audioDbContext.SaveChanges();
         }
 
         public void LinkArtistToGenre(int artistId, int genreId)
