@@ -81,6 +81,25 @@ namespace AudioPool.Repositories.Implementations
                 DateCreated = DateTime.UtcNow
             };
 
+            if (album.ArtistIds is { Count: > 0 })
+            {
+                var artists = _audioDbContext.Artists
+                    .Where(a => album.ArtistIds.Contains(a.Id))
+                    .ToList();
+
+                // Validate that all provided IDs exist
+                var missing = album.ArtistIds.Except(artists.Select(a => a.Id)).ToList();
+                if (missing.Count > 0)
+                {
+                    throw new KeyNotFoundException($"Artist(s) not found: {string.Join(", ", missing)}");
+                }
+
+                foreach (var artist in artists)
+                {
+                    entity.Artists.Add(artist);
+                }
+            }
+
             _audioDbContext.Albums.Add(entity);
             _audioDbContext.SaveChanges();
 
@@ -89,10 +108,21 @@ namespace AudioPool.Repositories.Implementations
 
         public void DeleteAlbum(int id)
         { // This must also delete all songs associated with the album due to foreign key constraints
-            var entity = _audioDbContext.Albums.FirstOrDefault(a => a.Id == id);
+            var entity = _audioDbContext.Albums
+                .Include(a => a.Artists)
+                .FirstOrDefault(a => a.Id == id);
+
             if (entity == null)
             {
                 throw new KeyNotFoundException($"Album not found (AlbumId: {id}).");
+            }
+
+            if (entity.Artists.Count > 0)
+            {
+                foreach (var artist in entity.Artists.ToList())
+                {
+                    artist.Albums.Remove(entity);
+                }
             }
 
             var songs = _audioDbContext.Songs.Where(s => s.AlbumId == id).ToList();
