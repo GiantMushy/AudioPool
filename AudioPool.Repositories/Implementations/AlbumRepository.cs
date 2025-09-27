@@ -46,27 +46,60 @@ namespace AudioPool.Repositories.Implementations
 
             if (album == null)
             {
-                return new AlbumDetailsDto();
+                throw new KeyNotFoundException($"Album with id {id} not found.");
             }
             return album;
         }
 
         public IEnumerable<SongDto> GetSongsByAlbumId(int albumId)
         {
-            // Implementation here
-            throw new NotImplementedException();
+            var songs = _audioDbContext.Songs
+                .Where(s => s.AlbumId == albumId)
+                .Select(s => new SongDto
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Duration = s.Duration
+                }).ToList();
+
+            if (!songs.Any())
+            {
+                throw new KeyNotFoundException($"No songs found for album with id {albumId}.");
+            }
+
+            return songs;
         }
 
         public int CreateAlbum(AlbumInputModel album)
         {
-            // Implementation here
-            throw new NotImplementedException();
+            var entity = new Album
+            {
+                Name = album.Name,
+                ReleaseDate = album.ReleaseDate,
+                CoverImageUrl = album.CoverImageUrl,
+                Description = album.Description,
+                DateCreated = DateTime.UtcNow
+            };
+
+            _audioDbContext.Albums.Add(entity);
+            _audioDbContext.SaveChanges();
+
+            return entity.Id;
         }
 
         public void DeleteAlbum(int id)
-        {
-            // Implementation here
-            throw new NotImplementedException();
+        { // This must also delete all songs associated with the album due to foreign key constraints
+            var entity = _audioDbContext.Albums.FirstOrDefault(a => a.Id == id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"Album not found (AlbumId: {id}).");
+            }
+
+            var songs = _audioDbContext.Songs.Where(s => s.AlbumId == id).ToList();
+
+            _audioDbContext.Songs.RemoveRange(songs);
+            _audioDbContext.Albums.Remove(entity);
+            _audioDbContext.SaveChanges();
         }
     }
 }

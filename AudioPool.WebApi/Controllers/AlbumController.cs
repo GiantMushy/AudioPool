@@ -28,14 +28,28 @@ namespace AudioPool.WebApi.Controllers
         [HttpGet("{id:int}", Name = "GetAlbumById")]
         public IActionResult GetAlbumById(int id)
         {
-            return Ok(_albumService.GetAlbumById(id));
+            try
+            {
+                return Ok(_albumService.GetAlbumById(id));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         // http://localhost:5000/audiopool/albums/1/songs
         [HttpGet("{id:int}/songs", Name = "GetSongsByAlbumId")]
         public IActionResult GetSongsByAlbumId(int id)
         {
-            return Ok(_albumService.GetSongsByAlbumId(id));
+            try
+            {
+                return Ok(_albumService.GetSongsByAlbumId(id));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         // -------------------------------------
@@ -46,15 +60,34 @@ namespace AudioPool.WebApi.Controllers
         [HttpPost("", Name = "CreateAlbum")]
         public IActionResult CreateAlbum([FromBody] AlbumInputModel album)
         {
-            var newId = _albumService.CreateAlbum(album);
-            return CreatedAtRoute("GetAlbumById", new { id = newId }, newId);
+            
+            try
+            {
+                var newId = _albumService.CreateAlbum(album);
+                return CreatedAtRoute("GetAlbumById", new { id = newId }, newId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         //Delete Album
         [HttpDelete("{id:int}", Name = "DeleteAlbum")]
         public IActionResult DeleteAlbum(int id)
         {
-            _albumService.DeleteAlbum(id);
-            return NoContent();
+            try
+            {
+                _albumService.DeleteAlbum(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
     }

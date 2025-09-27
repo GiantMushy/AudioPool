@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using AudioPool.Models;
 using AudioPool.Models.Dtos;
 using AudioPool.Models.InputModels;
 using AudioPool.Repositories.Interfaces;
@@ -17,7 +17,14 @@ namespace AudioPool.Services.Implementations
 
         public SongDetailsDto GetSongById(int id)
         {
-            return _songRepository.GetSongById(id);
+            var song = _songRepository.GetSongById(id);
+
+            song.Links.AddReference("self", $"api/songs/{id}");
+            song.Links.AddReference("edit", $"api/songs/{id}");
+            song.Links.AddReference("delete", $"api/songs/{id}");
+            song.Links.AddReference("album", $"api/albums/{song.Album.Id}");
+
+            return song;
         }
 
         public int CreateSong(SongInputModel song)

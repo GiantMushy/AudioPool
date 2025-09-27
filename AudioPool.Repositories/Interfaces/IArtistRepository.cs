@@ -6,7 +6,10 @@ namespace AudioPool.Repositories.Interfaces
 {
     public interface IArtistRepository
     {
-        IEnumerable<ArtistDto> GetAllArtists();
+        IEnumerable<ArtistDto> GetAllArtists(int pageNumber, int pageSize);
+        int GetArtistsTotalCount();
+        List<int> GetGenreIdsForArtist(int artistId);
+        List<int> GetArtistsByAlbumId(int albumId);
         ArtistDetailsDto GetArtistById(int id);
         IEnumerable<AlbumDto> GetAlbumsByArtistId(int artistId);
         int CreateArtist(ArtistInputModel artist);

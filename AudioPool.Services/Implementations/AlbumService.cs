@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using AudioPool.Models;
 using AudioPool.Models.Dtos;
 using AudioPool.Models.InputModels;
 using AudioPool.Repositories.Interfaces;
@@ -17,12 +17,29 @@ namespace AudioPool.Services.Implementations
 
         public AlbumDetailsDto GetAlbumById(int id)
         {
-            return _albumRepository.GetAlbumById(id);
+            var album = _albumRepository.GetAlbumById(id);
+
+            album.Links.AddReference("self", $"api/albums/{id}");
+            album.Links.AddReference("delete", $"api/albums/{id}");
+            album.Links.AddReference("songs", $"api/albums/{id}/songs");
+            album.Links.AddListReference("artists", album.Artists.Select(a => $"api/artists/{a.Id}"));
+
+            return album;
         }
 
         public IEnumerable<SongDto> GetSongsByAlbumId(int albumId)
         {
-            return _albumRepository.GetSongsByAlbumId(albumId);
+            var songs = _albumRepository.GetSongsByAlbumId(albumId);
+
+            foreach (var song in songs)
+            {
+                song.Links.AddReference("self", $"api/songs/{song.Id}");
+                song.Links.AddReference("delete", $"api/songs/{song.Id}");
+                song.Links.AddReference("edit", $"api/songs/{song.Id}");
+                song.Links.AddReference("album", $"api/albums/{albumId}");
+            }
+
+            return songs;
         }
 
         public int CreateAlbum(AlbumInputModel album)

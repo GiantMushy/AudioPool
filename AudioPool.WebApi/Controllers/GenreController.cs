@@ -24,7 +24,14 @@ namespace AudioPool.WebApi.Controllers
         [HttpGet("{id:int}", Name = "GetGenreById")]
         public IActionResult GetGenreById(int id)
         {
-            return Ok(_genreService.GetGenreById(id));
+            try
+            {
+                return Ok(_genreService.GetGenreById(id));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         // -------------------------------------
@@ -34,8 +41,15 @@ namespace AudioPool.WebApi.Controllers
         [HttpPost("", Name = "CreateGenre")]
         public IActionResult CreateGenre([FromBody] GenreInputModel input)
         {
-            var newId = _genreService.CreateGenre(input);
-            return CreatedAtRoute("GetGenreById", new { id = newId }, input);
+            try
+            {
+                var newId = _genreService.CreateGenre(input);
+                return CreatedAtRoute("GetGenreById", new { id = newId }, input);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

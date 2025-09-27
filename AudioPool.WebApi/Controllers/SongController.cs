@@ -23,7 +23,14 @@ namespace AudioPool.WebApi.Controllers
         [HttpGet("{id:int}", Name = "GetSongById")]
         public IActionResult GetSongById(int id)
         {
-            return Ok(_songService.GetSongById(id));
+            try
+            {
+                return Ok(_songService.GetSongById(id));
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         // -------------------------------------
@@ -33,22 +40,51 @@ namespace AudioPool.WebApi.Controllers
         [HttpPost("", Name = "CreateSong")]
         public IActionResult CreateSong([FromBody] SongInputModel song)
         {
-            var newId = _songService.CreateSong(song);
-            return CreatedAtRoute("GetSongById", new { id = newId }, song);
+            try
+            {
+                var newId = _songService.CreateSong(song);
+                return CreatedAtRoute("GetSongById", new { id = newId }, song);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id:int}", Name = "UpdateSong")]
         public IActionResult UpdateSong([FromBody] SongInputModel song, int id)
         {
-            _songService.UpdateSong(song, id);
-            return NoContent();
+            try
+            {
+                _songService.UpdateSong(song, id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id:int}", Name = "DeleteSong")]
         public IActionResult DeleteSong(int id)
         {
-            _songService.DeleteSong(id);
-            return NoContent();
+            try
+            {
+                _songService.DeleteSong(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
