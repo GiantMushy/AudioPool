@@ -17,9 +17,7 @@ namespace AudioPool.Repositories.Implementations
 
         public SongDetailsDto GetSongById(int id)
         {
-            // Get Id, Name, Dureation, album (as albumdto), and tracknumberonalbum
-            // Does NOT include Artist info
-            // Song entity only carries an albumId foreign key, so we need to include Album to get more info
+            // Get Id, Name, Dureation, album (as albumdto), and tracknumberonalbum generated
             var song = (from s in _audioDbContext.Songs
                         where s.Id == id
                         join al in _audioDbContext.Albums on s.AlbumId equals al.Id

@@ -8,6 +8,7 @@ using AudioPool.Services.Implementations;
 using AudioPool.Services.Interfaces;
 using AudioPool.Models.Entities;
 using AudioPool.Repositories.Contexts;
+using AudioPool.WebApi.Converters;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,7 +35,9 @@ builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 builder.Services.AddTransient<ISongRepository, SongRepository>();
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(o => { o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter()); });
+    
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
