@@ -1,0 +1,16 @@
+# Build outputs
+bin/
+obj/
+*.dll
+*.pdb
+*.cache
+
+# User-specific files
+*.user
+*.suo
+.vs/
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp

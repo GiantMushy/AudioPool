@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AudioPool.Models.InputModels;
 using AudioPool.Services.Interfaces;
+using AudioPool.WebApi.Attributes; // Add this using statement
 
 namespace AudioPool.WebApi.Controllers
 {
@@ -9,18 +10,18 @@ namespace AudioPool.WebApi.Controllers
     public class GenreController : ControllerBase
     {
         private readonly IGenreService _genreService;
+        
         public GenreController(IGenreService genreService)
         {
             _genreService = genreService;
         }
-        // http://localhost:5000/audiopool/genres
+
         [HttpGet("", Name = "GetAllGenres")]
         public ActionResult GetAllGenres()
         {
             return Ok(_genreService.GetAllGenres());
         }
 
-        // http://localhost:5000/audiopool/genres/1
         [HttpGet("{id:int}", Name = "GetGenreById")]
         public IActionResult GetGenreById(int id)
         {
@@ -38,6 +39,7 @@ namespace AudioPool.WebApi.Controllers
         // --------- Authorized access ---------
         // -------------------------------------
 
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPost("", Name = "CreateGenre")]
         public IActionResult CreateGenre([FromBody] GenreInputModel input)
         {

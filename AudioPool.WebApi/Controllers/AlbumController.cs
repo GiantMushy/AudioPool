@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using AudioPool.Models.Dtos;
 using AudioPool.Services.Interfaces;
 using AudioPool.Models.InputModels;
-
-//using AudioPool.Services.Interfaces;
+using AudioPool.WebApi.Attributes; 
 
 namespace AudioPool.WebApi.Controllers
 {
@@ -24,7 +23,6 @@ namespace AudioPool.WebApi.Controllers
         // -------- Unauthorized access --------
         // -------------------------------------
 
-        // http://localhost:5000/audiopool/albums/1
         [HttpGet("{id:int}", Name = "GetAlbumById")]
         public IActionResult GetAlbumById(int id)
         {
@@ -38,7 +36,6 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
-        // http://localhost:5000/audiopool/albums/1/songs
         [HttpGet("{id:int}/songs", Name = "GetSongsByAlbumId")]
         public IActionResult GetSongsByAlbumId(int id)
         {
@@ -56,11 +53,10 @@ namespace AudioPool.WebApi.Controllers
         // --------- Authorized access ---------
         // -------------------------------------
 
-        //Create Album
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPost("", Name = "CreateAlbum")]
         public IActionResult CreateAlbum([FromBody] AlbumInputModel album)
         {
-            
             try
             {
                 var newId = _albumService.CreateAlbum(album);
@@ -71,7 +67,8 @@ namespace AudioPool.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        //Delete Album
+
+        [ApiTokenAuthorization] // Add this attribute
         [HttpDelete("{id:int}", Name = "DeleteAlbum")]
         public IActionResult DeleteAlbum(int id)
         {
@@ -89,6 +86,5 @@ namespace AudioPool.WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
     }
 }

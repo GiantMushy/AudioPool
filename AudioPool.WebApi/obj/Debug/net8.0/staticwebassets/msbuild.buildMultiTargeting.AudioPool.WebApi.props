@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/AudioPool.WebApi.props" />
+</Project>

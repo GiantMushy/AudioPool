@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using AudioPool.Models.InputModels;
 using AudioPool.Services.Interfaces;
+using AudioPool.WebApi.Attributes; // Add this using statement
 
 namespace AudioPool.WebApi.Controllers
 {
@@ -19,7 +20,6 @@ namespace AudioPool.WebApi.Controllers
         // -------- Unauthorized access --------
         // -------------------------------------
 
-        // http://localhost:5000/audiopool/songs/1
         [HttpGet("{id:int}", Name = "GetSongById")]
         public IActionResult GetSongById(int id)
         {
@@ -37,6 +37,7 @@ namespace AudioPool.WebApi.Controllers
         // --------- Authorized access ---------
         // -------------------------------------
 
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPost("", Name = "CreateSong")]
         public IActionResult CreateSong([FromBody] SongInputModel song)
         {
@@ -51,6 +52,7 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPut("{id:int}", Name = "UpdateSong")]
         public IActionResult UpdateSong([FromBody] SongInputModel song, int id)
         {
@@ -69,6 +71,7 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
+        [ApiTokenAuthorization] // Add this attribute
         [HttpDelete("{id:int}", Name = "DeleteSong")]
         public IActionResult DeleteSong(int id)
         {
