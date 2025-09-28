@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AudioPool.WebApi.Migrations
 {
     [DbContext(typeof(AudioDbContext))]
-    [Migration("20250926092853_Initial")]
+    [Migration("20250928155348_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
