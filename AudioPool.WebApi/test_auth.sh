@@ -2,7 +2,7 @@
 
 # API Testing Script for AudioPool Authentication
 BASE_URL="http://localhost:5146"
-TOKEN="AudioPoolSecretToken2024"
+TOKEN="AudioPoolSecretToken2025"
 
 echo "🧪 AudioPool API Authentication Test"
 echo "===================================="

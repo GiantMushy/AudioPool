@@ -49,7 +49,7 @@ builder.Services.AddSwaggerGen(c =>
     // Add API Token header configuration
     c.AddSecurityDefinition("ApiToken", new OpenApiSecurityScheme
     {
-        Description = "API Token header. Example: \"AudioPoolSecretToken2024\"",
+        Description = "API Token header. Example: \"AudioPoolSecretToken2025\"",
         Name = "api-token",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,

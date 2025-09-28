@@ -3659,19 +3659,19 @@
     ]
   },
   "packageFolders": {
-    "/home/onni2/.nuget/packages/": {}
+    "/Users/totomcfrodo/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.WebApi/AudioPool.WebApi.csproj",
+      "projectUniqueName": "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/AudioPool.WebApi.csproj",
       "projectName": "AudioPool.WebApi",
-      "projectPath": "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.WebApi/AudioPool.WebApi.csproj",
-      "packagesPath": "/home/onni2/.nuget/packages/",
-      "outputPath": "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.WebApi/obj/",
+      "projectPath": "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/AudioPool.WebApi.csproj",
+      "packagesPath": "/Users/totomcfrodo/.nuget/packages/",
+      "outputPath": "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.WebApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/onni2/.nuget/NuGet/NuGet.Config"
+        "/Users/totomcfrodo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -3683,11 +3683,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.Models/AudioPool.Models.csproj": {
-              "projectPath": "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.Models/AudioPool.Models.csproj"
+            "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/AudioPool.Models.csproj": {
+              "projectPath": "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Models/AudioPool.Models.csproj"
             },
-            "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.Services/AudioPool.Services.csproj": {
-              "projectPath": "/home/onni2/code/2025vor/NET/audioPool/AudioPool/AudioPool.Services/AudioPool.Services.csproj"
+            "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Services/AudioPool.Services.csproj": {
+              "projectPath": "/Users/totomcfrodo/Documents/GitHub/AudioPool/AudioPool.Services/AudioPool.Services.csproj"
             }
           }
         }
@@ -3702,7 +3702,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -3744,7 +3744,11 @@
             "version": "[8.0.20, 8.0.20]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "name": "Microsoft.NETCore.App.Host.osx-arm64",
+            "version": "[8.0.20, 8.0.20]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
             "version": "[8.0.20, 8.0.20]"
           }
         ],
@@ -3756,7 +3760,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.110/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

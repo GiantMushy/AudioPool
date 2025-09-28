@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AudioPool.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bf11b0d8f3cf47f5a5d05aa54bfcaa8897ac7e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+194a63991c6ba702ed35a686f57d60d3991cddb9")]
 [assembly: System.Reflection.AssemblyProductAttribute("AudioPool.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AudioPool.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
