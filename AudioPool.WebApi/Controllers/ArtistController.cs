@@ -3,6 +3,7 @@ using AudioPool.Models.InputModels;
 using AudioPool.Services.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using AudioPool.Models.Dtos;
+using AudioPool.WebApi.Attributes; // Add this using statement
 
 namespace AudioPool.WebApi.Controllers
 {
@@ -21,7 +22,6 @@ namespace AudioPool.WebApi.Controllers
         // -------- Unauthorized access --------
         // -------------------------------------
 
-        // http://localhost:5000/audiopool/artists?pageNumber=1&pageSize=25
         [HttpGet("", Name = "GetAllArtists")]
         public IActionResult GetAllArtists(
             [FromQuery][Range(1, int.MaxValue)] int pageNumber = 1,
@@ -31,7 +31,6 @@ namespace AudioPool.WebApi.Controllers
             return Ok(_artistService.GetAllArtists(pageNumber, pageSize));
         }
 
-        // http://localhost:5000/audiopool/artists/1
         [HttpGet("{id:int}", Name = "GetArtistById")]
         public IActionResult GetArtistById(int id)
         {
@@ -45,7 +44,6 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
-        // http://localhost:5000/audiopool/artists/1/albums
         [HttpGet("{id:int}/albums", Name = "GetAlbumsByArtistId")]
         public IActionResult GetAlbumsByArtistId(int id)
         {
@@ -59,12 +57,11 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
-
         // -------------------------------------
         // --------- Authorized access ---------
         // -------------------------------------
 
-        //Create Artist
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPost("", Name = "CreateArtist")]
         public IActionResult CreateArtist([FromBody] ArtistInputModel input)
         {
@@ -79,7 +76,7 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
-        //Update Artist
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPut("{id:int}", Name = "UpdateArtist")]
         public IActionResult UpdateArtist([FromBody] ArtistInputModel artist, int id)
         {
@@ -98,7 +95,7 @@ namespace AudioPool.WebApi.Controllers
             }
         }
 
-        //Link Artist to Genre
+        [ApiTokenAuthorization] // Add this attribute
         [HttpPatch("{artistId:int}/genres/{genreId:int}", Name = "LinkArtistToGenre")]
         public IActionResult LinkArtistToGenre(int artistId, int genreId)
         {

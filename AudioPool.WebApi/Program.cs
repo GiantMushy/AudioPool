@@ -11,6 +11,7 @@ using AudioPool.Repositories.Contexts;
 using AudioPool.WebApi.Converters;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models; // Add this line
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,13 +35,42 @@ builder.Services.AddTransient<IArtistRepository, ArtistRepository>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 builder.Services.AddTransient<ISongRepository, SongRepository>();
 
-
 builder.Services.AddControllers()
     .AddJsonOptions(o => { o.JsonSerializerOptions.Converters.Add(new TimeSpanConverter()); });
-    
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// Configure Swagger with API Token support
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "AudioPool API", Version = "v1" });
+    
+    // Add API Token header configuration
+    c.AddSecurityDefinition("ApiToken", new OpenApiSecurityScheme
+    {
+        Description = "API Token header. Example: \"AudioPoolSecretToken2024\"",
+        Name = "api-token",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "ApiToken"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "ApiToken"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 var app = builder.Build();
 
@@ -52,9 +82,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
