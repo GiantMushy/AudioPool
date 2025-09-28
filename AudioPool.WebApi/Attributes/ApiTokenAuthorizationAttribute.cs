@@ -7,7 +7,7 @@ namespace AudioPool.WebApi.Attributes
     public class ApiTokenAuthorizationAttribute : Attribute, IAuthorizationFilter
     {
         private const string API_TOKEN_HEADER = "api-token";
-        private const string VALID_API_TOKEN = "AudioPoolSecretToken2024"; 
+        private const string VALID_API_TOKEN = "AudioPoolSecretToken2025"; 
         
         public void OnAuthorization(AuthorizationFilterContext context)
         {
